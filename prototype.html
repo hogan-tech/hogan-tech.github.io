@@ -2,90 +2,108 @@
 <html>
 
 <head>
-    <title>焦慮次數追蹤器</title>
+    <title>Anxiety Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #A3D8F4, #E4C1F9);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        button {
-            font-size: 20px;
-            padding: 15px 30px;
-            background-color: #ff6b6b;
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #4A4E69;
+        }
+
+        button#trackButton {
+            background-image: url('./images/duck_normal.png');
+            width: 150px;
+            height: 150px;
+            background-size: cover;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+
+        button#trackButton:active {
+            background-image: url('./images/duck_pressed.png');
+            transform: scale(0.9);
+        }
+
+        #counter {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #4A4E69;
+        }
+
+        #log {
+            max-height: 200px;
+            overflow-y: auto;
+            background: #F0F4F8;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        #logList li {
+            padding: 5px;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .clear-btn {
+            background-color: #FF6B6B;
             color: white;
             border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
             border-radius: 10px;
             cursor: pointer;
         }
 
-        button:hover {
-            background-color: #ff5252;
-        }
-
-        #counter {
-            font-size: 24px;
-            margin-top: 20px;
-        }
-
-        #log {
-            margin-top: 30px;
-            text-align: left;
-            width: 300px;
-            margin-left: auto;
-            margin-right: auto;
+        .clear-btn:hover {
+            background-color: #FF5252;
         }
     </style>
 </head>
 
 <body>
-    <h1>焦慮次數追蹤</h1>
-    <p>當你感到焦慮時，按下按鈕記錄</p>
+    <div class="container">
+        <h1>Anxiety Tracker</h1>
+        <button id="analysisBtn" onclick="location.href='analysis.html'"
+            style="position: absolute; top: 80px; right: 20px">
+            View Analysis
+        </button>
+        <button id="trackButton"></button>
+        <div id="counter">Today's Anxiety Count: 0</div>
 
-    <button id="trackButton">我現在感到焦慮</button>
+        <div id="log">
+            <h3>History Log</h3>
+            <ul id="logList"></ul>
+        </div>
 
-    <div id="counter">今日焦慮次數: 0</div>
-
-    <div id="log">
-        <h3>記錄歷史</h3>
-        <ul id="logList"></ul>
+        <button class="clear-btn" id="clearLog">Clear Log</button>
     </div>
 
-    <script>
-        let count = 0;
-        const trackButton = document.getElementById('trackButton');
-        const counterDisplay = document.getElementById('counter');
-        const logList = document.getElementById('logList');
-
-        // 從本地存儲加載數據
-        if (localStorage.getItem('anxietyCount')) {
-            count = parseInt(localStorage.getItem('anxietyCount'));
-            counterDisplay.textContent = `今日焦慮次數: ${count}`;
-        }
-
-        if (localStorage.getItem('anxietyLog')) {
-            logList.innerHTML = localStorage.getItem('anxietyLog');
-        }
-
-        trackButton.addEventListener('click', function () {
-            count++;
-            counterDisplay.textContent = `今日焦慮次數: ${count}`;
-
-            // 記錄時間戳
-            const now = new Date();
-            const timeString = now.toLocaleTimeString();
-            const dateString = now.toLocaleDateString();
-
-            const logItem = document.createElement('li');
-            logItem.textContent = `${dateString} ${timeString}`;
-            logList.prepend(logItem);
-
-            // 保存到本地存儲
-            localStorage.setItem('anxietyCount', count);
-            localStorage.setItem('anxietyLog', logList.innerHTML);
-        });
-    </script>
+    <script src="prototype.js"></script>
+    <script src="config.js"></script>
 </body>
 
 </html>

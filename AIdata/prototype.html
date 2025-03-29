@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>焦慮次數追蹤器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 15px 30px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff5252;
+        }
+
+        #counter {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        #log {
+            margin-top: 30px;
+            text-align: left;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>焦慮次數追蹤</h1>
+    <p>當你感到焦慮時，按下按鈕記錄</p>
+
+    <button id="trackButton">我現在感到焦慮</button>
+
+    <div id="counter">今日焦慮次數: 0</div>
+
+    <div id="log">
+        <h3>記錄歷史</h3>
+        <ul id="logList"></ul>
+    </div>
+
+    <script>
+        let count = 0;
+        const trackButton = document.getElementById('trackButton');
+        const counterDisplay = document.getElementById('counter');
+        const logList = document.getElementById('logList');
+
+        // 從本地存儲加載數據
+        if (localStorage.getItem('anxietyCount')) {
+            count = parseInt(localStorage.getItem('anxietyCount'));
+            counterDisplay.textContent = `今日焦慮次數: ${count}`;
+        }
+
+        if (localStorage.getItem('anxietyLog')) {
+            logList.innerHTML = localStorage.getItem('anxietyLog');
+        }
+
+        trackButton.addEventListener('click', function () {
+            count++;
+            counterDisplay.textContent = `今日焦慮次數: ${count}`;
+
+            // 記錄時間戳
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            const dateString = now.toLocaleDateString();
+
+            const logItem = document.createElement('li');
+            logItem.textContent = `${dateString} ${timeString}`;
+            logList.prepend(logItem);
+
+            // 保存到本地存儲
+            localStorage.setItem('anxietyCount', count);
+            localStorage.setItem('anxietyLog', logList.innerHTML);
+        });
+    </script>
+</body>
+
+</html>
