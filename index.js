@@ -36,7 +36,12 @@ window.addEventListener("load", async () => {
         const weekRes = await axios.get(
             `https://desolate-tor-24628-0ba2463868a2.herokuapp.com/anxiety/sevenDays?userName=${userName}&day=${today}`
         );
-        weekCount = weekRes.data.count || 0;
+
+        weekCount = weekRes.data.reduce(
+            (sum, item) => sum + (item.count || 0),
+            0
+        );
+
         weekCountDisplay.textContent = weekCount;
     } catch (error) {
         console.error("Failed to load anxiety data:", error);
