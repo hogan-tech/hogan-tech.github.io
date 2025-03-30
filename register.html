@@ -1,33 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <title>Register</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/dist/tailwind.min.css" />
+    <link rel="stylesheet" href="./style.css">
     <style>
         body {
+            font-family: 'Arial', sans-serif;
             background-color: #f0f9ff;
-            /* Relaxing light blue background */
-            font-family: 'Comic Sans MS', sans-serif;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
+            margin: 0;
         }
 
-        #registerForm {
+        .container {
             background-color: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 350px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #ff6347;
+            margin-bottom: 20px;
+        }
+
+        .duck-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .duck-image {
+            width: 150px;
+            height: auto;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
         }
 
         button {
             background-color: #ffcf33;
-            /* Duck beak yellow */
             color: white;
             padding: 10px 20px;
             border: none;
@@ -39,35 +67,33 @@
         button:hover {
             background-color: #ffb700;
         }
-
-        h1 {
-            color: #ff6347;
-            text-align: center;
-            margin-bottom: 20px;
-        }
     </style>
 </head>
-
 <body>
-    <h1>🦆 Register New Account</h1>
-    <form id="registerForm">
-        <div class="mb-4">
-            <label class="block text-gray-700 mb-2">Username:</label>
-            <input type="text" id="username" required class="w-full px-3 py-2 border rounded" />
+    <div class="container">
+        <h1>Register a New Account</h1>
+        
+        <div class="duck-container">
+            <img src="./images/yellow_duck.png" alt="Yellow Duck" class="duck-image" />
         </div>
-        <div class="mb-4">
-            <label class="block text-gray-700 mb-2">Password:</label>
-            <input type="password" id="password" required class="w-full px-3 py-2 border rounded" />
-        </div>
-        <button type="submit" class="w-full">Register</button>
-    </form>
 
-    <p id="message" class="mt-4 text-center"></p>
+        <form id="registerForm">
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2">Username:</label>
+                <input type="text" id="username" required class="w-full px-3 py-2 border rounded" />
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2">Password:</label>
+                <input type="password" id="password" required class="w-full px-3 py-2 border rounded" />
+            </div>
+            <button type="submit" class="w-full register-btn">Register</button>
+        </form>
+
+        <p id="message" class="mt-4 text-center"></p>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="register.js"></script>
-    <script src="config.js"></script>
+    <script src="./register.js"></script>
 </body>
-
 </html>
