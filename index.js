@@ -24,8 +24,6 @@ const weekCountDisplay = document.getElementById("weekCount");
 
 try {
     const user = JSON.parse(localStorage.getItem("loggedInUser"));
-    if (!user?.userName) return;
-
     const userName = user.userName;
     const today = new Date().toISOString().slice(0, 10);
     // Fetch today's count
