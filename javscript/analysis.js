@@ -1,5 +1,5 @@
 let chart;
-const USE_MOCK = false; // 切换为 false 后可接真实 API
+const USE_MOCK = false;
 let conversationHistory = [];
 
 // const FIXED_DATE = '2025-03-29';
@@ -101,7 +101,6 @@ async function fetchAnxietyData(type) {
                         result.push({ _id: timestamp, count: 1 });
                     }
                 } else if (record.count > 0) {
-                    // ✅ fallback：如果有 count 但没有 time，默认添加中午时间点
                     console.warn(`⚠️ today: ${day} 有 count=${record.count} 但 time 是空，使用 fallback 时间`);
                     for (let i = 0; i < record.count; i++) {
                         const timestamp = `${day}T12:00:00Z`;
@@ -150,7 +149,6 @@ async function loadDailyChart() {
     const today = new Date().toISOString().split("T")[0];
 
 
-    // 过滤出今天的数据并提取小时
     const dailyData = inputData
         .filter(item => item._id.split('T')[0] === today)
         .map(item => {
@@ -158,7 +156,6 @@ async function loadDailyChart() {
             return { hour: `${hour}:00`, count: item.count };
         });
 
-    // 初始化每小时统计
     const allHours = Array.from({ length: 24 }, (_, i) => `${i}:00`);
     const hourlyCounts = {};
     allHours.forEach(hour => hourlyCounts[hour] = 0);
@@ -184,7 +181,6 @@ async function callGemini() {
     const MODEL_ID = 'gemini-2.0-flash';
     const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_ID}:streamGenerateContent?key=${GEMINI_API_KEY}`;
 
-    // 根据 USE_MOCK 选择数据源
     const data = USE_MOCK ? MOCK_INPUT_DATA : await fetchAnxietyData("sevenDays");
 
     const contents = [
