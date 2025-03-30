@@ -13,7 +13,7 @@
     <link rel="apple-touch-icon" href="./images/duck_normal.png" />
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#ff4747" />
-    
+
     <style>
         body {
             background-color: #EAF4F4;
@@ -24,13 +24,13 @@
             height: 100vh;
             margin: 0;
         }
-
+        
         @media only screen and (max-width: 600px) {
             .register-card {
                 transform: scale(0.8);
             }
         }
-
+        
         .register-card {
             background-color: white;
             padding: 2rem;
@@ -41,17 +41,17 @@
             height: 500px;
             font-size: 16px;
         }
-
+        
         .register-card img {
             width: 100px;
             margin: 0 auto;
         }
-
+        
         .register-card input {
             margin-top: 10px;
         }
-
-        button {
+        
+        #register {
             background-color: #3B82F6;
             /* Tailwind's blue-500 */
             color: white;
@@ -63,8 +63,8 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
-        button:hover {
+        
+        #register:hover {
             background-color: #2563EB;
             /* Tailwind's blue-600 */
         }
@@ -85,8 +85,13 @@
                 <label for="password" class="block text-left">Password:</label>
                 <input type="password" id="password" required class="border border-gray-300 rounded p-2 w-full" />
             </div>
-            <button type="submit">Register</button>
+            <button id="register" type="submit">Register</button>
         </form>
+        <div class="mt-4">
+            <button onclick="window.location.href='login.html'" class="text-blue-600 hover:underline font-semibold">
+                Already have an account? Login
+            </button>
+        </div>
 
         <p id="message" class="text-sm mt-4"></p>
     </div>

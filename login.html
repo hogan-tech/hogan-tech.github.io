@@ -13,7 +13,7 @@
     <link rel="apple-touch-icon" href="./images/duck_normal.png" />
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#ff4747" />
-    
+
     <style>
         body {
             background-color: #EAF4F4;
@@ -24,13 +24,13 @@
             height: 100vh;
             margin: 0;
         }
-
+        
         @media only screen and (max-width: 600px) {
             .login-card {
                 transform: scale(0.8);
             }
         }
-
+        
         .login-card {
             background-color: white;
             padding: 2rem;
@@ -41,12 +41,12 @@
             height: 500px;
             font-size: 16px;
         }
-
+        
         .login-card img {
             width: 100px;
             margin: 0 auto;
         }
-
+        
         .login-card input {
             margin-top: 10px;
         }
@@ -66,8 +66,12 @@
                 <label for="password" class="block text-left">Password:</label>
                 <input type="password" id="password" class="border border-gray-300 rounded p-2 w-full" required />
             </div>
-            <button type="submit"
-                class="bg-blue-500 text-white py-4 my-6 px-4 rounded-full hover:bg-blue-600 transition">Login</button>
+            <button type="submit" class="bg-blue-500 text-white py-4 my-6 px-4 rounded-full hover:bg-blue-600 transition">Login</button>
+            <div class="mt-4">
+                <button onclick="window.location.href='register.html'" class="text-blue-600 hover:underline font-semibold">
+                    Don't have an account? Register
+                </button>
+            </div>
         </form>
         <p id="message" class="text-sm"></p>
     </div>
