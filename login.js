@@ -2,8 +2,6 @@ $(function () {
     const user = JSON.parse(localStorage.getItem("loggedInUser"));
     if (user && user.userName) {
         // The user is already logged in, redirect to the main page
-        console.log("user : " + user);
-        setTimeout(() => {}, 8000);
         window.location.href = "index.html";
         return;
     }
@@ -15,6 +13,7 @@ $(function () {
         axios
             .post(
                 "https://desolate-tor-24628-0ba2463868a2.herokuapp.com/users/login",
+                //"http://localhost:3000/users/login",
                 {
                     userName,
                     password,
@@ -31,8 +30,8 @@ $(function () {
                     .css("color", "green");
 
                 setTimeout(function () {
-                    window.location.href = "./prototype.html"; // Redirect to the anxiety tracking page
-                }, 8000);
+                    window.location.href = "./index.html"; // Redirect to the anxiety tracking page
+                }, 1000);
             })
             .catch(function (err) {
                 const msg = err.response?.data?.error || "Login failed";

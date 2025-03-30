@@ -1,7 +1,7 @@
 $(function () {
     const user = JSON.parse(localStorage.getItem("loggedInUser"));
     if (user && user.userName) {
-        window.location.href = "prototype.html";
+        window.location.href = "index.html";
         return;
     }
 
