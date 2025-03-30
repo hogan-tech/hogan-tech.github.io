@@ -7,8 +7,12 @@ let conversationHistory = [];
 //     window.location.href = "login.html";
 // }
 const checkUser = JSON.parse(localStorage.getItem("loggedInUser"));
+console.log("qweqweqweqewqewq:" + checkUser);
 if (!checkUser || !checkUser.userName) {
-    window.location.href = "login.html";
+    console.log("121312312");
+    setTimeout(function () {
+        window.location.href = "login.html";
+    }, 10000);
 }
 
 const MOCK_INPUT_DATA = [
