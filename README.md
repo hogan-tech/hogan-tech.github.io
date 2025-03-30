@@ -125,6 +125,101 @@ cd StevensQuakHackthonFE
 
 ---
 
+## 🌐 Architecture Overview
+
+```plaintext
+User 👤
+   |
+   | 1️⃣ Access PWA via GitHub Pages
+   ▼
+Frontend (Static SPA)
+📍 GitHub Pages (https://hogan-tech.github.io)
+
+   • Built with HTML/CSS/JavaScript (Vanilla + Tailwind)
+   • Registers/Login users (via backend API)
+   • Tapping interaction: plays sound, animates duck, sends event
+   • PWA features: manifest + service worker for offline support
+   • Calls Gemini AI for emotional analysis & guidance
+   • Fetches daily/weekly stats (chart.html)
+
+   |
+   | REST API calls (Axios)
+   ▼
+Backend Server (Express.js)
+📍 Heroku (https://desolate-tor-24628-0ba2463868a2.herokuapp.com)
+
+   • `/users/register` and `/users/login`
+   • `/anxiety` logs tap events (timestamped)
+   • `/anxiety/today` and `/anxiety/sevenDays` return stats
+   • Responses formatted in JSON
+   |
+   ▼
+Database (MongoDB Atlas)
+📍 Cloud MongoDB (Remote Cluster)
+
+   • Stores:
+     - 🧍 User data (username + hashed password)
+     - 🧠 Anxiety event logs (user, day, time)
+   • Indexed for date/time performance
+```
+
+---
+
+## 🤖 Gemini AI (LLM API)
+
+```
+Frontend JavaScript
+  └── sends anxiety history to Gemini via fetch()
+        ↳ Google Generative Language API (Gemini 2.0 Flash)
+              • Returns AI-generated wellness analysis
+              • Provides advice, emotional patterns, or praise
+```
+
+- Triggered on `chart.html` load or user message input
+- Personalized text displayed in `#geminiOutput`
+
+---
+
+## 📊 Data Flow Example
+
+```
+[User taps duck] → index.js
+  → POST /anxiety
+  → MongoDB saves { user, day, time }
+
+[chart.html loads] → fetch /sevenDays or /today
+  → fetch data
+  → call Gemini API
+  → render chart + response
+```
+
+---
+
+## 📦 Deployment Overview
+
+| Component     | Platform               | URL / Access                                   |
+|---------------|------------------------|------------------------------------------------|
+| **Frontend**  | GitHub Pages           | https://hogan-tech.github.io                   |
+| **Backend**   | Heroku                 | https://desolate-tor-24628-0ba2463868a2.herokuapp.com |
+| **Database**  | MongoDB Atlas          | Secure Cloud Cluster                           |
+| **AI Service**| Google Gemini API      | `gemini-2.0-flash` via `fetch()`               |
+
+---
+
+## 🗺️ Diagram
+
+![System Architecture](./images/anxiety-tap-game-architecture.png)
+
+---
+
+## ✨ Notes
+
+- The system supports both real-time interaction (tapping) and delayed analytics (charts + AI)
+- It is fully mobile-ready, installable as a PWA, and uses caching for offline access
+- Gemini API provides empathetic support based on the user’s stress patterns
+
+---
+
 ## ✨ Future Improvements
 
 - 🎨 Theming support (light/dark toggle)
