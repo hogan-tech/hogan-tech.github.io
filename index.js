@@ -22,14 +22,27 @@ const duckImage = document.getElementById("duckImage");
 const todayCountDisplay = document.getElementById("todayCount");
 const weekCountDisplay = document.getElementById("weekCount");
 
-// Load counts from localStorage
-if (localStorage.getItem("todayCount")) {
-    todayCount = parseInt(localStorage.getItem("todayCount"));
+try {
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!user?.userName) return;
+
+    const userName = user.userName;
+    const today = new Date().toISOString().slice(0, 10);
+    // Fetch today's count
+    const todayRes = await axios.get(
+        `https://desolate-tor-24628-0ba2463868a2.herokuapp.com/anxiety/today?userName=${userName}&day=${today}`
+    );
+    todayCount = todayRes.data.count || 0;
     todayCountDisplay.textContent = todayCount;
-}
-if (localStorage.getItem("weekCount")) {
-    weekCount = parseInt(localStorage.getItem("weekCount"));
+
+    // Fetch 7 days' count
+    const weekRes = await axios.get(
+        `https://desolate-tor-24628-0ba2463868a2.herokuapp.com/anxiety/sevenDays?userName=${userName}&day=${today}`
+    );
+    weekCount = weekRes.data.count || 0;
     weekCountDisplay.textContent = weekCount;
+} catch (error) {
+    console.error("Failed to load anxiety data:", error);
 }
 
 // Click event
