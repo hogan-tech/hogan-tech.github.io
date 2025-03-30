@@ -1,0 +1,21 @@
+{
+    "name": "Anxiety Tap Game",
+    "short_name": "TapGame",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#ff4747",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "./images/duck_normal.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./images/duck_normal.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

@@ -4,8 +4,7 @@ let conversationHistory = [];
 
 // const FIXED_DATE = '2025-03-29';
 if (!localStorage.getItem("loggedInUser")) {
-    localStorage.setItem("loggedInUser", JSON.stringify({ userName: "test" }));
-    console.log("⚠️ 测试中使用 mock 用户: wesley");
+    window.location.href = "login.html";
 }
 
 const MOCK_INPUT_DATA = [

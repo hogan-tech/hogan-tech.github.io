@@ -1,141 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Anxiety Tap Game</title>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-            rel="stylesheet"
-        />
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-                background-color: #000;
-                font-family: "Poppins", sans-serif;
-                color: white;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
 
-            header {
-                width: 100%;
-                text-align: center;
-                padding: 20px 0;
-                position: relative;
-                font-size: 1.5rem;
-                font-weight: 600;
-            }
+<head>
+    <meta charset="UTF-8" />
+    <title>Anxiety Tap Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="./images/icon-192.png" />
+    <meta name="theme-color" content="#ff4747" />
+    <link rel="icon" href="./images/duck_normal.png" type="image/png" />
+    <link rel="apple-touch-icon" href="./images/duck_normal.png" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#ff4747" />
 
-            .info-icon {
-                position: absolute;
-                right: 20px;
-                top: 20px;
-                font-size: 1.2rem;
-                cursor: pointer;
-            }
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Poppins", sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-            .anxiety-box {
-                background-color: #ff4747;
-                border-radius: 20px;
-                width: 300px;
-                height: 300px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-bottom: 30px;
-                cursor: pointer;
-            }
+        header {
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
 
-            .anxiety-box img {
-                width: 100px;
-            }
+        .info-icon {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
 
-            .stats {
-                display: flex;
-                justify-content: space-around;
-                width: 80%;
-                max-width: 400px;
-                background-color: #1e1e1e;
-                border-radius: 15px;
-                padding: 10px 0;
-                font-size: 1.2rem;
-            }
+        .anxiety-box {
+            background-color: #ff4747;
+            border-radius: 20px;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
 
-            .stats div {
-                flex: 1;
-                text-align: center;
-            }
+        .anxiety-box img {
+            width: 100px;
+        }
 
-            .bottom-nav {
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-                display: flex;
-                justify-content: space-around;
-                background-color: #1e1e1e;
-                padding: 10px 0;
-                border-top: 1px solid #333;
-            }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            width: 80%;
+            max-width: 400px;
+            background-color: #1e1e1e;
+            border-radius: 15px;
+            padding: 10px 0;
+            font-size: 1.2rem;
+        }
 
-            .bottom-nav img {
-                width: 30px;
-                height: 30px;
-            }
+        .stats div {
+            flex: 1;
+            text-align: center;
+        }
 
-            .logout-btn:hover {
-                background-color: #ff4747;
-                color: white;
-            }
-            .logout-container {
-                margin: 30px 0;
-            }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: #1e1e1e;
+            padding: 10px 0;
+            border-top: 1px solid #333;
+        }
 
-            #logoutBtn {
-                background-color: #ff4747;
-                color: white;
-                border: none;
-                border-radius: 25px;
-                padding: 12px 30px;
-                font-size: 1rem;
-                font-weight: 600;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-            }
+        .bottom-nav img {
+            width: 30px;
+            height: 30px;
+        }
 
-            #logoutBtn:hover {
-                background-color: #e03e3e;
-            }
-        </style>
-    </head>
+        .logout-btn:hover {
+            background-color: #ff4747;
+            color: white;
+        }
 
-    <body>
-        <header>
-            Anxiety Tap Game
-            <span class="info-icon">ℹ️</span>
-        </header>
+        .logout-container {
+            margin: 30px 0;
+        }
 
-        <div class="anxiety-box" id="trackButton">
-            <img id="duckImage" src="./images/duck_normal.png" alt="duck" />
+        #logoutBtn {
+            background-color: #ff4747;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #logoutBtn:hover {
+            background-color: #e03e3e;
+        }
+
+        #analysisBtn {
+            background-color: #ff4747;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #analysisBtn:hover {
+            background-color: #e03e3e;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        Anxiety Tap Game
+        <span class="info-icon">ℹ️</span>
+    </header>
+
+    <div class="anxiety-box" id="trackButton">
+        <img id="duckImage" src="./images/duck_normal.png" alt="duck" />
+    </div>
+
+    <div class="stats">
+        <div>
+            <div>Today</div>
+            <div id="todayCount">0</div>
         </div>
-
-        <div class="stats">
-            <div>
-                <div>Today</div>
-                <div id="todayCount">0</div>
-            </div>
-            <div>
-                <div>Last 7 Days</div>
-                <div id="weekCount">0</div>
-            </div>
+        <div>
+            <div>Last 7 Days</div>
+            <div id="weekCount">0</div>
         </div>
+    </div>
 
-        <div class="logout-container">
-            <button id="logoutBtn">Log Out</button>
-        </div>
+    <div class="logout-container">
+        <button id="logoutBtn">Log Out</button>
+        <button id="analysisBtn">Analysis</button>
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="index.js"></script>
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="index.js"></script>
+</body>
+
 </html>
