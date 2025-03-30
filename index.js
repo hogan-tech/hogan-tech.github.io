@@ -34,6 +34,7 @@ trackButton.addEventListener("click", async function () {
 
     // Send to backend via Axios
     const user = localStorage.getItem("loggedInUser");
+    console.log("user : " + user);
     console.log("userName : " + user.userName);
     console.log("day : " + dayString);
     console.log("time : " + timeString);

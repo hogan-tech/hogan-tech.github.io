@@ -2,7 +2,9 @@ $(function () {
     const user = JSON.parse(localStorage.getItem("loggedInUser"));
     if (user && user.userName) {
         // The user is already logged in, redirect to the main page
-        window.location.href = "prototype.html";
+        console.log("user : " + user);
+        setTimeout(() => {}, 8000);
+        window.location.href = "index.html";
         return;
     }
     $("#loginForm").on("submit", function (e) {
