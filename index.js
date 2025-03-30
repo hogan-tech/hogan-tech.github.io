@@ -1,5 +1,8 @@
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
+let todayCount = 0;
+let weekCount = 0;
+
+window.addEventListener("load", async () => {
+    if ("serviceWorker" in navigator) {
         navigator.serviceWorker
             .register("./service-worker.js")
             .then((registration) => {
@@ -11,26 +14,39 @@ if ("serviceWorker" in navigator) {
             .catch((error) => {
                 console.log("ServiceWorker registration failed: ", error);
             });
-    });
-}
+    }
 
-let todayCount = 0;
-let weekCount = 0;
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!user || !user.userName) {
+        window.location.href = "login.html";
+    }
+
+    const userName = user.userName;
+    const today = new Date().toISOString().slice(0, 10);
+
+    try {
+        // Fetch today's count
+        const todayRes = await axios.get(
+            `https://desolate-tor-24628-0ba2463868a2.herokuapp.com/anxiety/today?userName=${userName}&day=${today}`
+        );
+        todayCount = todayRes.data.count || 0;
+        todayCountDisplay.textContent = todayCount;
+
+        // Fetch 7 days' count
+        const weekRes = await axios.get(
+            `https://desolate-tor-24628-0ba2463868a2.herokuapp.com/anxiety/sevenDays?userName=${userName}&day=${today}`
+        );
+        weekCount = weekRes.data.count || 0;
+        weekCountDisplay.textContent = weekCount;
+    } catch (error) {
+        console.error("Failed to load anxiety data:", error);
+    }
+});
 
 const trackButton = document.getElementById("trackButton");
 const duckImage = document.getElementById("duckImage");
 const todayCountDisplay = document.getElementById("todayCount");
 const weekCountDisplay = document.getElementById("weekCount");
-
-// Load counts from localStorage
-if (localStorage.getItem("todayCount")) {
-    todayCount = parseInt(localStorage.getItem("todayCount"));
-    todayCountDisplay.textContent = todayCount;
-}
-if (localStorage.getItem("weekCount")) {
-    weekCount = parseInt(localStorage.getItem("weekCount"));
-    weekCountDisplay.textContent = weekCount;
-}
 
 // Click event
 trackButton.addEventListener("click", async () => {
