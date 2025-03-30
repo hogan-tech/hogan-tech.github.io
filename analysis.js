@@ -3,7 +3,11 @@ const USE_MOCK = false; // 切换为 false 后可接真实 API
 let conversationHistory = [];
 
 // const FIXED_DATE = '2025-03-29';
-if (!localStorage.getItem("loggedInUser")) {
+// if (!localStorage.getItem("loggedInUser")) {
+//     window.location.href = "login.html";
+// }
+const checkUser = JSON.parse(localStorage.getItem("loggedInUser"));
+if (!checkUser || !checkUser.userName) {
     window.location.href = "login.html";
 }
 
