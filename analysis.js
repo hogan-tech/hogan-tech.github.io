@@ -3,16 +3,8 @@ const USE_MOCK = false; // 切换为 false 后可接真实 API
 let conversationHistory = [];
 
 // const FIXED_DATE = '2025-03-29';
-// if (!localStorage.getItem("loggedInUser")) {
-//     window.location.href = "login.html";
-// }
-const checkUser = JSON.parse(localStorage.getItem("loggedInUser"));
-console.log("qweqweqweqewqewq:" + checkUser);
-if (!checkUser || !checkUser.userName) {
-    console.log("121312312");
-    setTimeout(function () {
-        window.location.href = "login.html";
-    }, 10000);
+if (!localStorage.getItem("loggedInUser")) {
+    window.location.href = "login.html";
 }
 
 const MOCK_INPUT_DATA = [
