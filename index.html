@@ -1,195 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Anxiety Tap Game</title>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="manifest" href="manifest.json" />
-        <link rel="apple-touch-icon" href="./images/icon-192.png" />
-        <meta name="theme-color" content="#ff4747" />
-        <link rel="icon" href="./images/duck_normal.png" type="image/png" />
-        <link rel="apple-touch-icon" href="./images/duck_normal.png" />
-        <link rel="manifest" href="manifest.json" />
-        <meta name="theme-color" content="#ff4747" />
 
-        <style>
-            body {
-                margin: 0;
-                height: 100vh;
-                padding: 0;
-                background-color: #eaf4f4;
-                font-family: "Poppins", sans-serif;
-                color: #333;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-            }
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anxiety Tap Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="./images/icon-192.png" />
+    <meta name="theme-color" content="#ff4747" />
+    <link rel="icon" href="./images/duck_normal.png" type="image/png" />
+    <link rel="apple-touch-icon" href="./images/duck_normal.png" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#ff4747" />
 
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            padding: 0;
+            background-color: #EAF4F4;
+            font-family: "Poppins", sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header {
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .anxiety-box {
+            background-color: #FF6B6B;
+            /* soft coral instead of harsh red */
+            border-radius: 20px;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .anxiety-box img {
+            width: 100px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            width: 90%;
+            max-width: 400px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 10px 0;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats div {
+            flex: 1;
+            text-align: center;
+            color: #333;
+        }
+
+        .logout-container {
+            margin: 30px 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        #logoutBtn,
+        #analysisBtn {
+            background-color: #3B82F6;
+            /* soft blue */
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #logoutBtn:hover,
+        #analysisBtn:hover {
+            background-color: #2563EB;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            padding: 10px 0;
+            border-top: 1px solid #ccc;
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .bottom-nav img {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* RWD Tweaks */
+        @media (max-width: 600px) {
             header {
-                width: 100%;
-                text-align: center;
-                padding: 20px 0;
-                position: relative;
-                font-size: 1.5rem;
-                font-weight: 600;
-                color: #333;
+                font-size: 1.2rem;
+                padding: 15px 10px;
             }
 
             .anxiety-box {
-                background-color: #ff6b6b;
-                /* soft coral instead of harsh red */
-                border-radius: 20px;
-                width: 300px;
-                height: 300px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-bottom: 30px;
-                cursor: pointer;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                width: 80vw;
+                height: 80vw;
+                max-width: 280px;
+                max-height: 280px;
             }
 
             .anxiety-box img {
-                width: 100px;
+                width: 80px;
             }
 
             .stats {
-                display: flex;
-                justify-content: space-around;
+                flex-direction: column;
+                gap: 10px;
                 width: 90%;
-                max-width: 400px;
-                background-color: white;
-                border-radius: 15px;
-                padding: 10px 0;
-                font-size: 1.2rem;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+                font-size: 1rem;
             }
 
-            .stats div {
-                flex: 1;
-                text-align: center;
-                color: #333;
-            }
-
-            .logout-container {
-                margin: 30px 0;
-                display: flex;
-                gap: 15px;
+            .bottom-nav img {
+                width: 24px;
+                height: 24px;
             }
 
             #logoutBtn,
             #analysisBtn {
-                background-color: #3b82f6;
-                /* soft blue */
-                color: white;
-                border: none;
-                border-radius: 25px;
-                padding: 12px 30px;
-                font-size: 1rem;
-                font-weight: 600;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+                padding: 10px 20px;
+                font-size: 0.9rem;
             }
 
-            #logoutBtn:hover,
-            #analysisBtn:hover {
-                background-color: #2563eb;
-            }
-
-            .bottom-nav {
-                position: fixed;
-                bottom: 0;
-                width: 100%;
+            .logout-container {
+                flex-direction: column;
+                gap: 10px;
                 display: flex;
-                justify-content: space-around;
-                background-color: white;
-                padding: 10px 0;
-                border-top: 1px solid #ccc;
-                box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+                align-items: center;
             }
+        }
+    </style>
+</head>
 
-            .bottom-nav img {
-                width: 30px;
-                height: 30px;
-            }
+<body>
+    <header>
+        Anxiety Tap Game
+    </header>
 
-            /* RWD Tweaks */
-            @media (max-width: 600px) {
-                header {
-                    font-size: 1.2rem;
-                    padding: 15px 10px;
-                }
+    <div class="anxiety-box" id="trackButton">
+        <img id="duckImage" src="./images/duck_normal.png" alt="duck" />
+    </div>
 
-                .anxiety-box {
-                    width: 80vw;
-                    height: 80vw;
-                    max-width: 280px;
-                    max-height: 280px;
-                }
-
-                .anxiety-box img {
-                    width: 80px;
-                }
-
-                .stats {
-                    flex-direction: column;
-                    gap: 10px;
-                    width: 90%;
-                    font-size: 1rem;
-                }
-
-                .bottom-nav img {
-                    width: 24px;
-                    height: 24px;
-                }
-
-                #logoutBtn,
-                #analysisBtn {
-                    padding: 10px 20px;
-                    font-size: 0.9rem;
-                }
-
-                .logout-container {
-                    flex-direction: column;
-                    gap: 10px;
-                    display: flex;
-                    align-items: center;
-                }
-            }
-        </style>
-    </head>
-
-    <body>
-        <header>Anxiety Tap Game</header>
-
-        <div class="anxiety-box" id="trackButton">
-            <img id="duckImage" src="./images/duck_normal.png" alt="duck" />
+    <div class="stats">
+        <div>
+            <div>Today</div>
+            <div id="todayCount">0</div>
         </div>
-
-        <div class="stats">
-            <div>
-                <div>Today</div>
-                <div id="todayCount">0</div>
-            </div>
-            <div>
-                <div>Last 7 Days</div>
-                <div id="weekCount">0</div>
-            </div>
+        <div>
+            <div>Last 7 Days</div>
+            <div id="weekCount">0</div>
         </div>
+    </div>
 
-        <div class="logout-container">
-            <button id="logoutBtn">Log Out</button>
-            <button id="analysisBtn">Analysis</button>
-        </div>
-        <audio id="quackSound" preload="auto"></audio>
+    <div class="logout-container">
+        <button id="logoutBtn">Log Out</button>
+        <button id="analysisBtn">Analysis</button>
+    </div>
+    <audio id="quackSound" preload="auto"></audio>
 
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="index.js"></script>
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./javscript/index.js"></script>
+</body>
+
 </html>

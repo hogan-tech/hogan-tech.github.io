@@ -1,17 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
-    <title>Register</title>
+    <title>Anxiety Tap Game Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="./images/icon-192.png" />
+    <meta name="theme-color" content="#ff4747" />
+    <link rel="icon" href="./images/duck_normal.png" type="image/png" />
+    <link rel="apple-touch-icon" href="./images/duck_normal.png" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#ff4747" />
+    
     <style>
         body {
-            background-color: #EAF4F4; /* Match login background */
+            background-color: #EAF4F4;
+            /* Match login background */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .register-card {
+                transform: scale(0.8);
+            }
         }
 
         .register-card {
@@ -35,7 +52,8 @@
         }
 
         button {
-            background-color: #3B82F6; /* Tailwind's blue-500 */
+            background-color: #3B82F6;
+            /* Tailwind's blue-500 */
             color: white;
             padding: 16px;
             margin-top: 1.5rem;
@@ -47,10 +65,12 @@
         }
 
         button:hover {
-            background-color: #2563EB; /* Tailwind's blue-600 */
+            background-color: #2563EB;
+            /* Tailwind's blue-600 */
         }
     </style>
 </head>
+
 <body>
     <div class="register-card">
         <img src="./images/duck_normal.png" alt="Relaxing Duck" />
@@ -73,6 +93,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./register.js"></script>
+    <script src="./javscript/register.js"></script>
 </body>
+
 </html>
